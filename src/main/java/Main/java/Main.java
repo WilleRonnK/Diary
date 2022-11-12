@@ -12,8 +12,13 @@ import java.util.Scanner;
 
 import static java.awt.SystemColor.text;
 
+
 public class Main {
+
     public static void main(String[] args) throws IOException {
+        /**
+         * Ett program som tillåter användaren att skriva in inlägg och sedan sparas dessa inlägg.
+         */
         ObjectMapper mapper = new ObjectMapper();
         Scanner scanner = new Scanner(System.in);
         List<UserEntry> userEntries = List.of(mapper.readValue(Paths.get("src/main/resources/user.json").toFile(), UserEntry[].class));
@@ -40,6 +45,10 @@ public class Main {
                 System.out.println("Text: " +newUserEntry.getText());
                 mainMenuMessage();
                 choices = Integer.parseInt(scanner.nextLine());
+
+                /**
+                 * Skriver ut anvädarens inlägg till användaren.
+                 */
             case 1:
                 List<UserEntry> userEntriesUpdated = List.of(mapper.readValue(Paths.get("src/main/resources/user.json").toFile(), UserEntry[].class));
                 for (UserEntry userEnter22 : userEntriesUpdated) {
@@ -47,10 +56,13 @@ public class Main {
                     System.out.println("Title: "+userEnter22.getTitle());
                     System.out.println("Text:" + userEnter22.getText());
                     System.out.println("-------------------");
-                    mainMenuMessage();
                 }
-
-            }
+                mainMenuMessage();
+                choices = Integer.parseInt(scanner.nextLine());
+                /**
+                 * Avslutar programmet
+                 */
+        }
             choices = 3;
 
             }
